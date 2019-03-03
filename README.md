@@ -43,6 +43,8 @@ It is uploaded to **PyPI**, so everyone can download it with
 ```bash
 $ python3 -m pip install wkairos --user
 ```
+##### Note: installed with `wkairos`, but run with `kairos`
+
 ###### the name `kairos` is already taken 😭😭
 ###### by “everyone” I mean everyone with Linux/OSX installed.
 
