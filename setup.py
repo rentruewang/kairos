@@ -10,6 +10,7 @@ setuptools.setup(
     author="MutatedFlood",
     author_email="b06901038@g.ntu.edu.tw",
     description="A command line weather app.",
+    install_requires=["requests", "termios"],
     license="MIT",
     long_description=long_description,
     long_description_content_type="text/markdown",
