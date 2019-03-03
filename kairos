@@ -2,10 +2,11 @@
 
 import sys
 
+from termcolor import cprint
+
 from KaiRoS.reference import COLOR
 from KaiRoS.terminal import TerminalInterface
 from KaiRoS.utils import print_help
-from termcolor import cprint
 
 if __name__ == "__main__":
     # didn't use argparse because of its inability to pass args unprecedented by hyphens

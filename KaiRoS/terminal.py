@@ -130,7 +130,7 @@ class TerminalInterface:
                    end='', color=COLOR, flush=True)
             print("°C/", end='', flush=True)
             cprint("{tempF:.1f}".format(tempF=C2F(temp_C)),
-                  end='', color=COLOR, flush=True)
+                   end='', color=COLOR, flush=True)
             print("°F  {icon}".format(
                 icon=icon, temp=temp_C, tempF=C2F(temp_C)), end=END)
         except KeyError:

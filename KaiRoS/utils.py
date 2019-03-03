@@ -7,7 +7,6 @@ from os import path
 
 import requests
 from requests.exceptions import ConnectionError
-import json
 
 
 def print_help():
