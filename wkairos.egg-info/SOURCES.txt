@@ -9,4 +9,5 @@ KaiRoS/weather.py
 wkairos.egg-info/PKG-INFO
 wkairos.egg-info/SOURCES.txt
 wkairos.egg-info/dependency_links.txt
+wkairos.egg-info/requires.txt
 wkairos.egg-info/top_level.txt

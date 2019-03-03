@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: wkairos
-Version: 0
+Version: 0.0
 Summary: A command line weather app.
 Home-page: https://github.com/MutatedFlood/KaiRoS
 Author: MutatedFlood
@@ -49,9 +49,11 @@ Description: # KaiRoS
         It is uploaded to **PyPI**, so everyone can download it with 
         
         ```bash
-        $ python3 -m pip install kairos
+        $ python3 -m pip install wkairos --user
         ```
+        ##### Note: installed with `wkairos`, but run with `kairos`
         
+        ###### the name `kairos` is already taken 😭😭
         ###### by “everyone” I mean everyone with Linux/OSX installed.
         
         
@@ -59,6 +61,7 @@ Description: # KaiRoS
         **What does `kairos` mean ?**
         
         It means _weather_ in Greek. It’s the name only because it sounds nice (I basically looked that up using [google translate](https://translate.google.com))
+        
 Keywords: weather
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3

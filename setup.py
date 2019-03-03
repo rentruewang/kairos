@@ -5,7 +5,7 @@ with open("README.md", "r") as rm:
 
 setuptools.setup(
     name='wkairos',
-    version='0',
+    version='0.0',
     scripts=['kairos'],
     author="MutatedFlood",
     author_email="b06901038@g.ntu.edu.tw",
