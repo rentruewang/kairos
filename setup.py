@@ -5,12 +5,12 @@ with open("README.md", "r") as rm:
 
 setuptools.setup(
     name='wkairos',
-    version='0.0',
+    version='0.0.0.3',
     scripts=['kairos'],
     author="MutatedFlood",
     author_email="b06901038@g.ntu.edu.tw",
     description="A command line weather app.",
-    install_requires=["requests", "termios"],
+    install_requires=["requests"],
     license="MIT",
     long_description=long_description,
     long_description_content_type="text/markdown",
