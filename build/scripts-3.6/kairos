@@ -1,0 +1,27 @@
+#!python
+
+import sys
+
+from termcolor import cprint
+
+from KaiRoS.reference import COLOR
+from KaiRoS.terminal import TerminalInterface
+from KaiRoS.utils import print_help
+
+if __name__ == "__main__":
+    # didn't use argparse because of its inability to pass args unprecedented by hyphens
+
+    ti = TerminalInterface()
+
+    if len(sys.argv) == 1:
+        ti.info()
+        cprint("usage: kairos [-h] for help", color=COLOR)
+    elif sys.argv[1] in ("n", "-n", "now", "--now"):
+        ti.weather()
+    elif sys.argv[1] in ("f", "-f", "fore", "--fore", "forecast", "--forecast"):
+        ti.forecast()
+    elif sys.argv[1] in ("h", "-h", "help", "--help"):
+        print_help()
+    else:
+        print("usage: kairos [-h] for help")
+        print("error: unrecognized arguments: {}".format(sys.argv[1]))

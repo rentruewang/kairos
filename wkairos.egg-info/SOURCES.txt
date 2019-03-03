@@ -1,0 +1,12 @@
+README.md
+kairos
+setup.py
+KaiRoS/__init__.py
+KaiRoS/reference.py
+KaiRoS/terminal.py
+KaiRoS/utils.py
+KaiRoS/weather.py
+wkairos.egg-info/PKG-INFO
+wkairos.egg-info/SOURCES.txt
+wkairos.egg-info/dependency_links.txt
+wkairos.egg-info/top_level.txt

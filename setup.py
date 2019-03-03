@@ -4,7 +4,7 @@ with open("README.md", "r") as rm:
     long_description = rm.read()
 
 setuptools.setup(
-    name='kairos',
+    name='wkairos',
     version='0',
     scripts=['kairos'],
     author="MutatedFlood",

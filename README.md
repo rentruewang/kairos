@@ -41,7 +41,7 @@ Pretty self. explanatory. `wttr.in` is not as efficient and/or reliable as `kair
 It is uploaded to **PyPI**, so everyone can download it with 
 
 ```bash
-$ python3 -m pip install kairos
+$ python3 -m pip install wkairos --user
 ```
 
 ###### by “everyone” I mean everyone with Linux/OSX installed.
