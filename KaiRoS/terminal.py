@@ -7,10 +7,25 @@ from sys import stdout
 from requests.exceptions import ConnectionError
 from termcolor import cprint
 
-from .reference import (ASCII_ART, COLOR, END, LOOKUP_ICON, LOOKUP_WIND, NAME,
-                        WARNING_COLOR, ZERO)
-from .utils import (C2F, clear_scr, from_future, getch, handle_connectionerror,
-                    time_from_now, wind_degrees)
+from .reference import (
+    ASCII_ART,
+    COLOR,
+    END,
+    LOOKUP_ICON,
+    LOOKUP_WIND,
+    NAME,
+    WARNING_COLOR,
+    ZERO,
+)
+from .utils import (
+    C2F,
+    clear_scr,
+    from_future,
+    getch,
+    handle_connectionerror,
+    time_from_now,
+    wind_degrees,
+)
 from .weather import Forecast, Weather
 
 
@@ -30,28 +45,35 @@ class TerminalInterface:
             handle_connectionerror()
 
     def display_weather_info(self, wttr):
-        print("It's {}".format(str(datetime.now()).split('.')[0]))
+        print("It's {}".format(str(datetime.now()).split(".")[0]))
         try:
             icon = LOOKUP_ICON[wttr["weather"][0]["icon"][:2]]
-            temp_C = wttr["main"]["temp"]-ZERO
-            cprint("{temp:.1f}".format(temp=temp_C),
-                   end='', color=COLOR, flush=True)
-            print("°C/", end='', flush=True)
-            cprint("{tempF:.1f}".format(tempF=C2F(temp_C)),
-                   end='', color=COLOR, flush=True)
-            print("°F  {icon}".format(
-                icon=icon), end=END)
+            temp_C = wttr["main"]["temp"] - ZERO
+            cprint("{temp:.1f}".format(temp=temp_C), end="", color=COLOR, flush=True)
+            print("°C/", end="", flush=True)
+            cprint(
+                "{tempF:.1f}".format(tempF=C2F(temp_C)), end="", color=COLOR, flush=True
+            )
+            print("°F  {icon}".format(icon=icon), end=END)
         except KeyError:
             pass
         print(wttr["weather"][0]["main"], end=END)
         print(wttr["weather"][0]["description"], end=END)
-        print("in {country} {loc}".format(
-            country=wttr["sys"]["country"],
-            loc=(wttr["coord"]["lon"], wttr["coord"]["lat"])), end='')
+        print(
+            "in {country} {loc}".format(
+                country=wttr["sys"]["country"],
+                loc=(wttr["coord"]["lon"], wttr["coord"]["lat"]),
+            ),
+            end="",
+        )
         print()
         drc = wind_degrees(wttr["wind"]["deg"])
-        print("Wind: {deg}  {speed}(m/s)".format(
-            deg=LOOKUP_WIND[drc], speed=wttr["wind"]["speed"]), end='')
+        print(
+            "Wind: {deg}  {speed}(m/s)".format(
+                deg=LOOKUP_WIND[drc], speed=wttr["wind"]["speed"]
+            ),
+            end="",
+        )
         print()
 
     def forecast(self, loc=None):
@@ -68,47 +90,47 @@ class TerminalInterface:
             while not from_future(full_forecast["list"][index]["dt_txt"]):
                 index += 1
         except IndexError:
-            cprint("No up-to-date data available :(",
-                   color=WARNING_COLOR, flush=True)
+            cprint("No up-to-date data available :(", color=WARNING_COLOR, flush=True)
             return
         start_index = index
         show_entry = True
         while True:
             if show_entry:
-                self.print_entry(fore=full_forecast["list"][index],
-                                 city=full_forecast["city"])
+                self.print_entry(
+                    fore=full_forecast["list"][index], city=full_forecast["city"]
+                )
 
-            cprint("Input", end='', color=COLOR, flush=True)
-            print(": [", end='', flush=True)
-            cprint("f", end='', color=COLOR, flush=True)
-            print("]orward 3 hours, [", end='', flush=True)
-            cprint("b", end='', color=COLOR, flush=True)
-            print("]ackward 3 hours, [", end='', flush=True)
-            cprint("q", end='', color=COLOR, flush=True)
-            print("]uit: ", end='', flush=True)
+            cprint("Input", end="", color=COLOR, flush=True)
+            print(": [", end="", flush=True)
+            cprint("f", end="", color=COLOR, flush=True)
+            print("]orward 3 hours, [", end="", flush=True)
+            cprint("b", end="", color=COLOR, flush=True)
+            print("]ackward 3 hours, [", end="", flush=True)
+            cprint("q", end="", color=COLOR, flush=True)
+            print("]uit: ", end="", flush=True)
             typed = getch().lower()
 
-            if typed == 'b':
+            if typed == "b":
                 if index == start_index:
-                    cprint("No more entries!\a", end='', color=WARNING_COLOR)
+                    cprint("No more entries!\a", end="", color=WARNING_COLOR)
                     print()
                     show_entry = False
                     continue
                 index -= 1
                 show_entry = True
-            elif typed == 'f':
+            elif typed == "f":
                 if index == full_forecast["cnt"] - 1:
-                    cprint("No more entries!\a", end='', color=WARNING_COLOR)
+                    cprint("No more entries!\a", end="", color=WARNING_COLOR)
                     print()
                     show_entry = False
                     continue
                 index += 1
                 show_entry = True
-            elif typed == 'q' or typed == "quit":
+            elif typed == "q" or typed == "quit":
                 print(flush=True)
                 break
             else:
-                cprint('Invalid input\a', end='', color=WARNING_COLOR)
+                cprint("Invalid input\a", end="", color=WARNING_COLOR)
                 show_entry = False
                 print()
                 continue
@@ -116,32 +138,47 @@ class TerminalInterface:
             clear_scr()
 
     def print_entry(self, fore, city):
-        print("Forecast: {time}{END}{from_now}".format(
-            END=END,
-            time=fore["dt_txt"],
-            from_now=time_from_now(fore["dt_txt"])), end='')
+        print(
+            "Forecast: {time}{END}{from_now}".format(
+                END=END, time=fore["dt_txt"], from_now=time_from_now(fore["dt_txt"])
+            ),
+            end="",
+        )
         print()
         try:
             i = fore["weather"][0]["icon"][:2]
             icon = LOOKUP_ICON[i]
-            temp_C = fore["main"]["temp"]-ZERO
-            cprint("{temp:.1f}".format(temp=temp_C),
-                   end='', color=COLOR, flush=True)
-            print("°C/", end='', flush=True)
-            cprint("{tempF:.1f}".format(tempF=C2F(temp_C)),
-                   end='', color=COLOR, flush=True)
-            print("°F  {icon}".format(
-                icon=icon, temp=temp_C, tempF=C2F(temp_C)), end=END)
+            temp_C = fore["main"]["temp"] - ZERO
+            cprint("{temp:.1f}".format(temp=temp_C), end="", color=COLOR, flush=True)
+            print("°C/", end="", flush=True)
+            cprint(
+                "{tempF:.1f}".format(tempF=C2F(temp_C)), end="", color=COLOR, flush=True
+            )
+            print(
+                "°F  {icon}".format(icon=icon, temp=temp_C, tempF=C2F(temp_C)), end=END
+            )
         except KeyError:
             pass
         print("{main}".format(main=fore["weather"][0]["main"]), end=END)
-        print("{description}".format(
-            description=fore["weather"][0]["description"]), end=END)
-        print("in {country} ({lon:.1f},{lat:.1f})".format(country=city["country"],
-                                                          lon=city["coord"]["lon"], lat=city["coord"]["lat"]), end='')
+        print(
+            "{description}".format(description=fore["weather"][0]["description"]),
+            end=END,
+        )
+        print(
+            "in {country} ({lon:.1f},{lat:.1f})".format(
+                country=city["country"],
+                lon=city["coord"]["lon"],
+                lat=city["coord"]["lat"],
+            ),
+            end="",
+        )
         print()
 
         drc = wind_degrees(fore["wind"]["deg"])
-        print("Wind: {wind}  {speed}(m/s)".format(wind=LOOKUP_WIND[drc],
-                                                  speed=fore["wind"]["speed"]), end='')
+        print(
+            "Wind: {wind}  {speed}(m/s)".format(
+                wind=LOOKUP_WIND[drc], speed=fore["wind"]["speed"]
+            ),
+            end="",
+        )
         print()

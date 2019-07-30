@@ -4,9 +4,9 @@ with open("README.md", "r") as rm:
     long_description = rm.read()
 
 setuptools.setup(
-    name='wkairos',
-    version='0.0.0.3',
-    scripts=['kairos'],
+    name="wkairos",
+    version="0.0.0.3",
+    scripts=["kairos"],
     author="MutatedFlood",
     author_email="b06901038@g.ntu.edu.tw",
     description="A command line weather app.",

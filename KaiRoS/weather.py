@@ -18,7 +18,7 @@ class Location:
         self.region = r["region"]
         self.city = r["city"]
         self.country = r["country"]
-        self.location = tuple(float(f) for f in r["loc"].split(','))
+        self.location = tuple(float(f) for f in r["loc"].split(","))
 
         return self
 
@@ -30,8 +30,9 @@ class Weather:
 
     @property
     def get(self):
-        lat, lon = self.loc if self.loc else \
-            tuple(int(i) for i in self.location.get.location)
+        lat, lon = (
+            self.loc if self.loc else tuple(int(i) for i in self.location.get.location)
+        )
 
         r = requests.get(url=WEATHER.format(lat=lat, lon=lon, api=API_KEY))
         self.weather = json.loads(r.text)
@@ -50,8 +51,9 @@ class Forecast:
 
     @property
     def get(self):
-        lat, lon = self.loc if self.loc else \
-            tuple(int(i) for i in self.location.get.location)
+        lat, lon = (
+            self.loc if self.loc else tuple(int(i) for i in self.location.get.location)
+        )
 
         r = requests.get(url=FORECAST.format(lat=lat, lon=lon, api=API_KEY))
         self.forecast = json.loads(r.text)
