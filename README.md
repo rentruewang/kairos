@@ -1,8 +1,9 @@
+![image](./.hidden/image.png)
+
 # KaiRoS
 
 ### A simple, easy to use terminal weather app.
 
-![image](./.hidden/image.png)
 
 **dependencies**
 
